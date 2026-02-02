@@ -23,6 +23,12 @@ class GeminiClient:
             system_instruction = "You are an AI assistant. "
             "Answer the user's questions accurately and politely."
             
+            contents = [
+            types.Content(
+            role="system",
+            parts=[types.Part.from_text(text=system_instruction)]
+        )
+    ]
             # Add the prompt to the chat history
             self.chat_history += [types.Content(
                   role='user',
@@ -46,4 +52,4 @@ class GeminiClient:
     )
 
             # TO DO: Return the response text from Gemini
-    return response_text
+        return response_text
