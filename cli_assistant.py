@@ -3,7 +3,7 @@ from gemini_client import *
 def main():
   client = GeminiClient()
 
-    while True:
+  while True:
       user_input = input("What's your question today? ").strip()
 
       if user_input.lower() == "exit":
