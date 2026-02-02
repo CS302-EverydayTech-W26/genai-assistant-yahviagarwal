@@ -10,8 +10,8 @@ def main():
         print("Goodbye!")
       break
 
-    response = client.generate_response(user_input)
-    print("AI: {response}")
+  response = client.generate_response(user_input)
+  print("AI: {response}")
 
 if __name__ == "__main__":
   main()
