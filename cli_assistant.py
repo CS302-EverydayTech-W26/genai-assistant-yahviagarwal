@@ -8,7 +8,7 @@ def main():
 
       if user_input.lower() == "exit":
         print("Goodbye!")
-          break
+      break
 
     response = client.generate_response(user_input)
     print("AI: {response}")
