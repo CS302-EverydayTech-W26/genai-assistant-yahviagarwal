@@ -15,36 +15,38 @@ class GeminiClient:
             self.chat_history = []
 
     def generate_response(self, user_input):
-        if self.chat_history == None:  
+        if self.chat_history is None:  
             return "AI Assistant is not configured correctly"
-        
-        else:
-            # TO DO: Modify system instruction based on the purpose of your GenAI Assistant
-            system_instruction = "You are an AI assistant. "
-            "Answer the user's questions accurately and politely."
-            
-            contents = [
+    
+        system_instruction = "You are an AI assistant. Answer the user's questions accurately and politely."
+    
+    # Build full conversation
+        contents = [
             types.Content(
             role="system",
             parts=[types.Part.from_text(text=system_instruction)]
         )
-    ]
-            # Add the prompt to the chat history
-            self.chat_history += [types.Content(
-                  role='user',
-                  parts=[types.Part.from_text(text=user_input)]
-                )]
+        ] + self.chat_history + [
+            types.Content(
+                role='user',
+                parts=[types.Part.from_text(text=user_input)]
+            )
+        ]
+
 
             # TO DO: Use the client's chat history & system instruction to prompt Gemini
-            response = self.client.models.generate_content(
+        response = self.client.models.generate_content(
             model="gemini-1.5-flash",
             contents=self.chat_history,
+            config = types.GenerateContentConfig(system_instruction=system_instruction)
             system_instruction=system_instruction
         )
 
+        x = self.client.models.generate_content()
+
             # TO DO: Add the response text from Gemini to the client's chat history
-            response_text = response.text
-            self.chat_history.append(
+        response_text = response.text
+        self.chat_history.append(
             types.Content(
             role="model",
             parts=[types.Part.from_text(text=response_text)]
