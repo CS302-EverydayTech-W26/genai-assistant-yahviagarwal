@@ -1,7 +1,17 @@
 from gemini_client import *
 
 def main():
-    pass
+  client = GeminiClient()
+
+  while True:
+    user_input = input("What's your question today? ").strip()
+
+    if user_input.lower() == "exit":
+      print("Goodbye!")
+      break
+
+    response = client.generate_response(user_input)
+    print("AI: " + response + "\n")
 
 if __name__ == "__main__":
   main()

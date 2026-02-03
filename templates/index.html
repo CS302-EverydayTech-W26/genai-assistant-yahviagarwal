@@ -1,0 +1,31 @@
+<!doctype html>
+    <html>
+        <head>
+            <title>Yahvi's Gemini AI Assistant</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 40px; }
+                h1 { color: #333; }
+                form { margin-top: 20px; }
+                textarea { width: 100%; height: 80px; }
+                .response { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background: #f9f9f9; }
+            </style>
+        </head>
+        <body>
+            <h1>Gemini AI Assistant</h1>
+            <p>Type a question below and click "Ask AI" to get a response.</p>
+            
+            <form method="POST">
+                <textarea name="prompt" placeholder="Enter your prompt here...">{{ user_input }}</textarea>
+                <br><br>
+                <input type="submit" value="Ask AI">
+            </form>
+            
+            {% if response_text %}
+                <div class="response">
+                    <strong>AI Response:</strong>
+                    <p>{{ response_text }}</p>
+                </div>
+            {% endif %}
+        </body>
+    </html>
+    
